@@ -24,3 +24,6 @@ Route::get('/login', function () {
 Route::get('/buatakun', function () {
     return view('buatakun');
 });
+Route::get('/katalogproduk', function () {
+    return view('katalogproduk');
+});
