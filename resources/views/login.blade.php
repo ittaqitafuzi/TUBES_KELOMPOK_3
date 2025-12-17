@@ -235,7 +235,7 @@
         </form>
 
         <div class="register-link">
-            belum punya akun? <a href="http://127.0.0.1:8000">Buat Akun</a><br>
+            belum punya akun? <a href="http://127.0.0.1:8000/buatakun">Buat Akun</a><br>
             atau Masuk menggunakan
         </div>
 
