@@ -6,23 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        //
+        Schema::create('keranjang', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedInteger('produk_id');
+            $table->integer('jumlah');
+            $table->timestamp('created_at')->useCurrent();
+
+            $table->foreign('customer_id')
+                  ->references('id')
+                  ->on('customers')
+                  ->onDelete('cascade');
+
+            $table->foreign('produk_id')
+                  ->references('id')
+                  ->on('produk')
+                  ->onDelete('cascade');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        //
+        Schema::dropIfExists('keranjang');
     }
 };

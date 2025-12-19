@@ -1,28 +1,17 @@
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
+public function up()
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        //
-    }
+    Schema::create('produk', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('nama_produk', 100);
+        $table->text('deskripsi')->nullable();
+        $table->decimal('harga', 10, 2);
+        $table->integer('berat');
+        $table->timestamps();
+    });
+}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
-};
+public function down()
+{
+    Schema::dropIfExists('produk');
+}
+

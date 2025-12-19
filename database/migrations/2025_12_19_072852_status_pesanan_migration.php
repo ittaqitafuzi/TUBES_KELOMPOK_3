@@ -1,28 +1,18 @@
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
+public function up()
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        //
-    }
+    Schema::create('status_pesanan', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('pesanan_id');
+        $table->enum('status', ['diproses', 'dikirim', 'selesai']);
+        $table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
-};
+        $table->foreign('pesanan_id')
+              ->references('id')->on('pesanan')
+              ->onDelete('cascade');
+    });
+}
+
+public function down()
+{
+    Schema::dropIfExists('status_pesanan');
+}
