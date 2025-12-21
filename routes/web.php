@@ -21,6 +21,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/admindashboard', function () {
+    return view('admindashboard');
+});
+
 Route::get('/buatakun', function () {
     return view('buatakun');
 });

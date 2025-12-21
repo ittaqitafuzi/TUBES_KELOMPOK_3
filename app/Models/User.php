@@ -2,43 +2,64 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nama',           // 
+        'email',          // 
+        'password',       // 
+        'role',           // 
+        'telepon',        // 
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+   
     protected $hidden = [
         'password',
-        'remember_token',
+       
+    ];
+
+    
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * METHOD TAMBAHAN UNTUK CEK ROLE
+     * Biar mudah di controller/view
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    
+    // Cek apakah user admin
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    // Cek apakah user customer
+    public function isCustomer()
+    {
+        return $this->role === 'customer';
+    }
+
+    /**
+     * RELASI (NANTI KALO BUTUH)
+     */
+    
+    // Contoh relasi ke pesanan (nanti)
+    // public function pesanans()
+    // {
+    //     return $this->hasMany(Pesanan::class);
+    // }
+    
+    // Contoh relasi ke alamat (nanti)
+    // public function alamats()
+    // {
+    //     return $this->hasMany(Alamat::class);
+    // }
 }

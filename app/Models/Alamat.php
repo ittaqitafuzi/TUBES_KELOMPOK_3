@@ -9,7 +9,9 @@ class Alamat extends Model
 {
 
     protected $table = 'alamat';
-    protected $guarded = [];
+    protected $guardded = [];
 
     use HasFactory;
 }
+    
+    
